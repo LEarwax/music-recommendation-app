@@ -1,6 +1,6 @@
 from abc import ABC, abstractmethod
 from typing import Optional
-from models.comments import Comment
+from models.comments.comment import Comment
 
 class CommentRepositoryInterface(ABC):
     @abstractmethod

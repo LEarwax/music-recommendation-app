@@ -1,6 +1,6 @@
 from fastapi import APIRouter
 from models.comments.comment import Comment
-from services.comments import comment_service
+from services.comments.comment_service import comment_service
 
 router = APIRouter()
 

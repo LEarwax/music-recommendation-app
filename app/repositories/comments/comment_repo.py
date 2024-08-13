@@ -1,7 +1,7 @@
 from typing import Optional
-from models.comments import Comment
+from models.comments.comment import Comment
 from db.db import SessionLocal
-from repositories.comments import CommentRepositoryInterface
+from repositories.comments.comment_repo_interface import CommentRepositoryInterface
 
 db = SessionLocal()
 
