@@ -2,10 +2,10 @@ from fastapi import HTTPException
 from .comment_service_interface import CommentServiceInterface
 from typing import Optional
 from repositories.comments.comment_repo import CommentRepository
-
 from datetime import date
-
 from models.comments.comment import Comment
+from db.db import SessionLocal  
+from models.comments.commentORM import CommentORM
 
 class CommentService(CommentServiceInterface):
     def __init__(self, comment_repo):
@@ -16,6 +16,7 @@ class CommentService(CommentServiceInterface):
         if not comment:
             raise HTTPException(status_code=404, detail="Comment not found")
         return comment
-
-comment_repo = CommentRepository()
+    
+    
+comment_repo = CommentRepository(db_session=SessionLocal)
 comment_service = CommentService(comment_repo)

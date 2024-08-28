@@ -9,3 +9,7 @@ class Comment(BaseModel):
     dislike_count: int
     created_on: datetime
     updated_on: datetime
+
+    class Config:
+        orm_mode = True
+        from_attributes = True
