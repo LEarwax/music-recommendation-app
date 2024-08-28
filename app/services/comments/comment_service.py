@@ -11,9 +11,8 @@ class CommentService(CommentServiceInterface):
     def __init__(self, comment_repo):
         self.comment_repo = comment_repo
 
-    def get_comment(self, comment_id: int) -> Optional[Comment]:
-        # comment = self.comment_repo.get_comment_by_id(comment_id)
-        comment = Comment(comment_id=1, account_id=1, comment_content="Hello, here is a comment", like_count=2, dislike_count=4, created_on=date(2024, 8, 12), updated_on=date(2024, 8, 12))
+    async def get_comment(self, comment_id: int) -> Optional[Comment]:
+        comment = await self.comment_repo.get_comment_by_id(comment_id)
         if not comment:
             raise HTTPException(status_code=404, detail="Comment not found")
         return comment

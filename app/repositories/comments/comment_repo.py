@@ -2,6 +2,10 @@ from typing import Optional
 from models.comments.comment import Comment
 from db.db import SessionLocal
 from repositories.comments.comment_repo_interface import CommentRepositoryInterface
+from models.comments.commentORM import CommentORM
+
+from sqlalchemy.future import select
+from sqlalchemy import select, Table
 
 db = SessionLocal()
 
@@ -10,5 +14,6 @@ class CommentRepository(CommentRepositoryInterface):
         """
         Retrieve a comment by its ID.
         """
-        query = "SELECT * FROM comments WHERE comment_id = :comment_id"
-        return await db.fetch_one(query=query, values={"comment_id": comment_id})
+        query = select(CommentORM).where(CommentORM.comment_id == comment_id)
+        result = db.execute(query)
+        return result.scalar_one_or_none()

@@ -6,5 +6,5 @@ router = APIRouter()
 
 
 @router.get("/comment/{comment_id}", response_model=Comment)
-def get_comment(comment_id: int):
-    return comment_service.get_comment(comment_id)
+async def get_comment(comment_id: int):
+    return await comment_service.get_comment(comment_id)
